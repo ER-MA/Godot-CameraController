@@ -29,7 +29,6 @@ func _unhandled_input(event: InputEvent) -> void:
 					movement_component.motion_mode = 0 # 摄像机的运动模式设置为Lerp
 					movement_component.deceleration_speed = deceleration_speed # 覆盖插值移动速度
 					_mouse_start_position = get_local_mouse_position() # 记录鼠标位置
-					print(_mouse_start_position)
 					
 				# 鼠标右键被按下和松开时
 				_is_dragging = event.pressed
