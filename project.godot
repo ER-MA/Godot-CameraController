@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="test_study_2"
+config/tags=PackedStringArray("study", "test")
 run/main_scene="uid://ce7po5ifr7l5d"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

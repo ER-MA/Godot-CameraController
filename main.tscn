@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ce7po5ifr7l5d"]
 
-[ext_resource type="PackedScene" uid="uid://dk6yitdwmd2wt" path="res://camera_2d/camera_2d_movenent_component.tscn" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dk6yitdwmd2wt" path="res://camera_2d/camera_2d_movement_component.tscn" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dt0lfgcu7w7lg" path="res://icon.svg" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://y4rpylwhx1jh" path="res://camera_2d/camera_2d_mouse_drag_comopnent.tscn" id="2_h2yge"]
 
@@ -8,12 +8,12 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Camera2DMovenentComponent" parent="." node_paths=PackedStringArray("camera_2d") instance=ExtResource("1_h2yge")]
+[node name="Camera2DMovementComponent" parent="." node_paths=PackedStringArray("camera_2d") instance=ExtResource("1_h2yge")]
 camera_2d = NodePath("../Camera2D")
 motion_mode = 1
 
 [node name="Camera2DMouseDragComopnent" parent="." node_paths=PackedStringArray("movement_component") instance=ExtResource("2_h2yge")]
-movement_component = NodePath("../Camera2DMovenentComponent")
+movement_component = NodePath("../Camera2DMovementComponent")
 is_enable = true
 
 [node name="Icon" type="Sprite2D" parent="."]
