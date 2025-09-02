@@ -6,7 +6,7 @@ class_name Camera2DKeyboardControllerComponent
 @export_group("键盘控制参数")
 @export_range(1.0, 10.0, 0.1) var deceleration_speed: float = 5.0 ## 摄像机的插值移动速度（会覆盖MovenentComponent中的deceleration_speed）
 @export_range(1.0, 1000.0, 1.0, "suffix:px/s") var move_speed: float = 200.0 ## 摄像机的移动速度（px/s）
-var _direction_input_vector: Vector2 # 方向输入
+#var _direction_input_vector: Vector2 # 方向输入
 
 
 # 物理帧更新
