@@ -43,7 +43,6 @@ func get_camera() -> Camera2D:
 	return camera
 
 
-
 # TODO:
 # 配置文件分离，创建独立的配置资源
 # 封装参数，阻止外部直接修改

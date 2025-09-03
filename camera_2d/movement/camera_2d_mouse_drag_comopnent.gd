@@ -11,14 +11,15 @@ var _is_dragging: bool = false
 
 
 func _ready() -> void:
-	if is_enable and movement_component:
+	if _is_ready():
+		
 		_movement_component_camera = movement_component.get_camera() # 安全的缓存摄像机实例
 		if not _movement_component_camera:
 			push_error("[Camera2DMouseDragComponent] 获取的 Camera2DMovementComponent.Camera2D 实例为空")
 
 # 物理帧更新
 func _physics_process(_delta: float) -> void:
-	if is_enable and movement_component and _movement_component_camera:
+	if _is_ready():
 		
 		if _is_dragging:
 			movement_component.target_position = _movement_component_camera.position + (_mouse_start_position - get_local_mouse_position())
@@ -26,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 
 # 输入处理
 func _unhandled_input(event: InputEvent) -> void:
-	if is_enable and movement_component:
+	if _is_ready():
 		
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -40,3 +41,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				# 鼠标右键被按下和松开时
 				_is_dragging = event.pressed
 				#_is_dragging = true if event.pressed else false # 类似三元运算符的另一种写法
+
+
+func _is_ready() -> bool:
+	return is_enable and movement_component and movement_component.is_enable and movement_component.camera
