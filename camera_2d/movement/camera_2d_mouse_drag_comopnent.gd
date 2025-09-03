@@ -5,16 +5,23 @@ class_name Camera2DMouseDragComponent
 @export var is_enable: bool = false
 @export_group("拖拽参数")
 @export_range(1.0, 10.0, 0.1) var deceleration_speed: float = 5.0 ## 摄像机的插值移动速度（会覆盖MovenentComponent中的deceleration_speed）
+var _movement_component_camera: Camera2D
 var _mouse_start_position: Vector2 # 开始拖动时鼠标的位置
 var _is_dragging: bool = false
 
 
+func _ready() -> void:
+	if is_enable and movement_component:
+		_movement_component_camera = movement_component.get_camera() # 安全的缓存摄像机实例
+		if not _movement_component_camera:
+			push_error("[Camera2DMouseDragComponent] 获取的 Camera2DMovementComponent.Camera2D 实例为空")
+
 # 物理帧更新
 func _physics_process(_delta: float) -> void:
-	if is_enable and movement_component:
+	if is_enable and movement_component and _movement_component_camera:
 		
 		if _is_dragging:
-			movement_component.target_position = movement_component.camera.position + (_mouse_start_position - get_local_mouse_position())
+			movement_component.target_position = _movement_component_camera.position + (_mouse_start_position - get_local_mouse_position())
 
 
 # 输入处理
