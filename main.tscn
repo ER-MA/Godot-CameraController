@@ -19,6 +19,7 @@ texture = ExtResource("2_0xm2m")
 
 [node name="Camera2DMovementComponent" parent="Movement" node_paths=PackedStringArray("camera_2d") instance=ExtResource("1_h2yge")]
 camera_2d = NodePath("../../Camera2D")
+is_enable = true
 
 [node name="Camera2DMouseDragComopnent" parent="Movement" node_paths=PackedStringArray("movement_component") instance=ExtResource("2_h2yge")]
 movement_component = NodePath("../Camera2DMovementComponent")
