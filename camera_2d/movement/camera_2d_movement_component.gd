@@ -11,11 +11,14 @@ class_name Camera2DMovementComponent
 
 
 func _ready() -> void:
-	if not camera:
+	# 组件自检
+	if not is_enable:
+		push_warning("[Camera2DMovementComponent] 脚本被禁用")
+	elif not camera:
 		push_error("[Camera2DMovementComponent] 未分配或找到 Camera2D")
 
 func _physics_process(delta: float) -> void:
-	if is_enable and camera:
+	if is_ready():
 		
 		if not target_position.is_equal_approx(camera.position):
 			if motion_mode == 0:
@@ -23,24 +26,20 @@ func _physics_process(delta: float) -> void:
 			elif motion_mode == 1:
 				_smooth_movement(delta)
 
+
 func _deceleration_movement(delta: float) -> void:
-	if is_enable and camera:
-		camera.position = lerp(camera.position, target_position, delta * deceleration_speed)
+	camera.position = lerp(camera.position, target_position, delta * deceleration_speed)
 	
 func _smooth_movement(delta: float) -> void:
-	if is_enable and camera:
-		camera.position = camera.position.move_toward(target_position, delta * smoothing_speed)
+	camera.position = camera.position.move_toward(target_position, delta * smoothing_speed)
 
-func get_camera() -> Camera2D:
-	if not is_enable:
-		push_warning("[Camera2DMovementComponent] 组件已禁用 (is_enable = false)")
-		return null
+
+func get_camera_position() -> Vector2:
+	return camera.position
 	
-	if not camera:
-		push_warning("[Camera2DMovementComponent] 未分配或找到 Camera2D")
-		return null
-	
-	return camera
+
+func is_ready() -> bool:
+	return is_enable and camera
 
 
 # TODO:

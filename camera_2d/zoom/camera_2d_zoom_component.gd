@@ -14,8 +14,17 @@ class_name Camera2DZoomComponent
 @export_range(1.0, 10.0, 0.1) var deceleration_speed: float = 5.0 ## 摄像机的插值移动速度
 @export_range(1.0, 1000.0, 1.0, "suffix:倍率/s") var smoothing_speed: float = 2.0 ## 摄像机的平滑移动速度
 
+
+func _ready() -> void:
+	# 组件自检
+	if not is_enable:
+		push_warning("[Camera2DZoomComponent] 脚本被禁用")
+	elif not camera:
+		push_error("[Camera2DZoomComponent] 未分配或找到 Camera2D")
+
 func _physics_process(delta: float) -> void:
-	if is_enable and camera:
+	if is_ready():
+		
 		target_zoom = _clamp_zoom(target_zoom)
 		if not target_zoom.is_equal_approx(camera.zoom):
 			if motion_mode == 0:
@@ -23,14 +32,16 @@ func _physics_process(delta: float) -> void:
 			elif motion_mode == 1:
 				_smooth_zoom(delta)
 
+
 func _deceleration_zoom(delta: float) -> void:
-	if is_enable and camera:
-		camera.zoom = lerp(camera.zoom, target_zoom, delta * deceleration_speed)
+	camera.zoom = lerp(camera.zoom, target_zoom, delta * deceleration_speed)
 	
 func _smooth_zoom(delta: float) -> void:
-	if is_enable and camera:
-		camera.zoom = camera.zoom.move_toward(target_zoom, delta * smoothing_speed)
-
+	camera.zoom = camera.zoom.move_toward(target_zoom, delta * smoothing_speed)
 
 func _clamp_zoom(zoom: Vector2) -> Vector2:
 	return zoom.clamp(min_zoom, max_zoom)
+
+
+func is_ready() -> bool:
+	return is_enable and camera

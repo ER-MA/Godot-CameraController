@@ -5,29 +5,27 @@ class_name Camera2DMouseDragComponent
 @export var is_enable: bool = false
 @export_group("拖拽参数")
 @export_range(1.0, 10.0, 0.1) var deceleration_speed: float = 5.0 ## 摄像机的插值移动速度（会覆盖MovenentComponent中的deceleration_speed）
-var _movement_component_camera: Camera2D
 var _mouse_start_position: Vector2 # 开始拖动时鼠标的位置
 var _is_dragging: bool = false
 
 
 func _ready() -> void:
-	if _is_ready():
-		
-		_movement_component_camera = movement_component.get_camera() # 安全的缓存摄像机实例
-		if not _movement_component_camera:
-			push_error("[Camera2DMouseDragComponent] 获取的 Camera2DMovementComponent.Camera2D 实例为空")
+	# 组件自检
+	if not is_enable:
+		push_warning("[Camera2DMouseDragComponent] 脚本被禁用")
+	elif not movement_component:
+		push_error("[Camera2DMouseDragComponent] 未分配或找到 Camera2DMovementComponent")
 
 # 物理帧更新
 func _physics_process(_delta: float) -> void:
-	if _is_ready():
+	if is_ready():
 		
 		if _is_dragging:
-			movement_component.target_position = _movement_component_camera.position + (_mouse_start_position - get_local_mouse_position())
-
+			movement_component.target_position = movement_component.get_camera_position() + (_mouse_start_position - get_local_mouse_position())
 
 # 输入处理
 func _unhandled_input(event: InputEvent) -> void:
-	if _is_ready():
+	if is_ready():
 		
 		if event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_RIGHT:
@@ -43,5 +41,5 @@ func _unhandled_input(event: InputEvent) -> void:
 				#_is_dragging = true if event.pressed else false # 类似三元运算符的另一种写法
 
 
-func _is_ready() -> bool:
-	return is_enable and movement_component and movement_component.is_enable and movement_component.camera
+func is_ready() -> bool:
+	return is_enable and movement_component and movement_component.is_ready()

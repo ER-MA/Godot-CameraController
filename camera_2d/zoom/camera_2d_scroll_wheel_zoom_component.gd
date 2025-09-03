@@ -12,9 +12,16 @@ class_name Camera2DScrollWheelZoomComponent
 #var _target_zoom: Vector2 = Vector2(1.0, 1.0) ## 摄像机目标缩放倍率
 
 
+func _ready() -> void:
+	# 组件自检
+	if not is_enable:
+		push_warning("[Camera2DScrollWheelZoomComponent] 脚本被禁用")
+	elif not zoom_component:
+		push_error("[Camera2DScrollWheelZoomComponent] 未分配或找到 Camera2DZoomComponent")
+
 # 输入处理
 func _unhandled_input(event: InputEvent) -> void:
-	if is_enable and zoom_component and zoom_component.is_enable:
+	if is_ready():
 		
 		if event is InputEventMouseButton:
 			# 滚轮缩放
@@ -30,3 +37,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				zoom_component.deceleration_speed = deceleration_speed
 				zoom_component.smoothing_speed = smoothing_speed
 				zoom_component.target_zoom -= step_size
+
+
+func is_ready() -> bool:
+	return is_enable and zoom_component and zoom_component.is_ready()

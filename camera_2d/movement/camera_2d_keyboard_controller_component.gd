@@ -9,13 +9,19 @@ class_name Camera2DKeyboardControllerComponent
 #var _direction_input_vector: Vector2 # 方向输入
 
 
+func _ready() -> void:
+	# 组件自检
+	if not is_enable:
+		push_warning("[Camera2DKeyboardControllerComponent] 脚本被禁用")
+	elif not movement_component:
+		push_error("[Camera2DKeyboardControllerComponent] 未分配或找到 Camera2DMovementComponent")
+
 # 物理帧更新
 func _physics_process(delta: float) -> void:
-	if is_enable and movement_component:
+	if is_ready():
 		movement_component.target_position += Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * -1 * move_speed * delta
 		# 另一种四向四区输入方式：Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 
 
-# 输入处理
-#movement_component.motion_mode = 0 # 摄像机的运动模式设置为Lerp
-#movement_component.deceleration_speed = deceleration_speed # 覆盖插值移动速度
+func is_ready() -> bool:
+	return is_enable and movement_component and movement_component.is_ready()
