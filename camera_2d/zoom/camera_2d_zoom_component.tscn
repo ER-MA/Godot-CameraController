@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxj0fo153qakt"]
+
+[ext_resource type="Script" uid="uid://bf5aivwiyamkx" path="res://camera_2d/zoom/camera_2d_zoom_component.gd" id="1_ali4g"]
+
+[node name="Camera2DZoomComponent" type="Node2D"]
+script = ExtResource("1_ali4g")
