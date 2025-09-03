@@ -14,7 +14,7 @@ func _physics_process(_delta: float) -> void:
 	if is_enable and movement_component:
 		
 		if _is_dragging:
-			movement_component.target_position = movement_component.camera_2d.position + (_mouse_start_position - get_local_mouse_position())
+			movement_component.target_position = movement_component.camera.position + (_mouse_start_position - get_local_mouse_position())
 
 
 # 输入处理

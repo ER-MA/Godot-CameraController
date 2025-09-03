@@ -1,7 +1,7 @@
 extends Node2D
 class_name Camera2DMovementComponent
 
-@export var camera_2d: Camera2D
+@export var camera: Camera2D
 @export var is_enable: bool = false
 @export_group("运动参数")
 @export_enum("Lerp", "Smooth") var motion_mode: int = 0 ## 摄像机的运动模式
@@ -11,21 +11,21 @@ class_name Camera2DMovementComponent
 
 
 func _physics_process(delta: float) -> void:
-	if is_enable and camera_2d:
+	if is_enable and camera:
 		
-		if not target_position.is_equal_approx(camera_2d.position):
+		if not target_position.is_equal_approx(camera.position):
 			if motion_mode == 0:
 				_deceleration_movement(delta)
 			elif motion_mode == 1:
 				_smooth_movement(delta)
 
 func _deceleration_movement(delta: float) -> void:
-	if is_enable and camera_2d:
-		camera_2d.position = lerp(camera_2d.position, target_position, delta * deceleration_speed)
+	if is_enable and camera:
+		camera.position = lerp(camera.position, target_position, delta * deceleration_speed)
 	
 func _smooth_movement(delta: float) -> void:
-	if is_enable and camera_2d:
-		camera_2d.position = camera_2d.position.move_toward(target_position, delta * smoothing_speed)
+	if is_enable and camera:
+		camera.position = camera.position.move_toward(target_position, delta * smoothing_speed)
 
 
 # TODO:
