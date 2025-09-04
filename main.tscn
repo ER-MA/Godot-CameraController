@@ -45,4 +45,3 @@ is_enable = true
 [node name="Camera2DScrollWheelZoomComponent" parent="Camera2D/Zoom" node_paths=PackedStringArray("zoom_component") instance=ExtResource("8_5vw27")]
 zoom_component = NodePath("../Camera2DZoomComponent")
 is_enable = true
-smoothing_speed = 190.0

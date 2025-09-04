@@ -3,9 +3,10 @@ class_name Camera2DScrollWheelZoomComponent
 
 @export var zoom_component: Camera2DZoomComponent
 @export var is_enable: bool = false
-@export_category("滚轮缩放参数")
-@export_enum("Lerp", "Smooth") var motion_mode: int = 0 ## 摄像机的缩放模式
+@export_group("滚轮缩放参数")
 @export var step_size: Vector2 = Vector2(0.1, 0.1) ## 摄像机的缩放步长
+@export_subgroup("覆盖参数")
+@export_enum("None", "Lerp", "Smooth") var motion_mode: int = 1 ## 摄像机的缩放模式：[br]None: 直接缩放至目标倍率[br]Lerp: 使用 lerp 函数对倍率进行插值[br]Smooth: 使用 move_toward 函数对倍率进行平滑插值
 @export_range(1.0, 10.0, 0.1) var deceleration_speed: float = 5.0 ## 摄像机的插值移动速度
 @export_range(1.0, 1000.0, 1.0, "suffix:倍率/s") var smoothing_speed: float = 2.0 ## 摄像机的平滑移动速度
 #var _is_zoom_process: bool = false
@@ -27,16 +28,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			# 滚轮缩放
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 				# 上滑滚轮放大
-				zoom_component.motion_mode = motion_mode
-				zoom_component.deceleration_speed = deceleration_speed
-				zoom_component.smoothing_speed = smoothing_speed
+				_cover_parameter()
 				zoom_component.target_zoom += step_size
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				# 下滑滚轮缩小
-				zoom_component.motion_mode = motion_mode
-				zoom_component.deceleration_speed = deceleration_speed
-				zoom_component.smoothing_speed = smoothing_speed
+				_cover_parameter()
 				zoom_component.target_zoom -= step_size
+
+func _cover_parameter() -> void:
+	zoom_component.motion_mode = motion_mode
+	zoom_component.deceleration_speed = deceleration_speed
+	zoom_component.smoothing_speed = smoothing_speed
 
 
 func is_ready() -> bool:
