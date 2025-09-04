@@ -47,6 +47,8 @@ func add_target_position(increase: Vector2) -> void:
 func get_camera_position() -> Vector2:
 	return camera.position
 	
+func get_camera_zoom() -> Vector2:
+	return camera.zoom
 
 func is_ready() -> bool:
 	return is_enable and camera

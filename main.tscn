@@ -25,11 +25,11 @@ is_enable = true
 
 [node name="Camera2DMouseDragComopnent" parent="Camera2D/Movement" node_paths=PackedStringArray("movement_component") instance=ExtResource("2_h2yge")]
 movement_component = NodePath("../Camera2DMovementComponent")
+is_enable = true
 
 [node name="Camera2DKeyboardControllerComponent" parent="Camera2D/Movement" node_paths=PackedStringArray("movement_component") instance=ExtResource("3_lquwl")]
 script = ExtResource("4_7mycd")
 movement_component = NodePath("../Camera2DMovementComponent")
-is_enable = true
 
 [node name="Camera2DMove2PositionComponent" parent="Camera2D/Movement" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_kek77")]
 movement_component = NodePath("../Camera2DMovementComponent")
