@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ce7po5ifr7l5d"]
+[gd_scene load_steps=10 format=3 uid="uid://ce7po5ifr7l5d"]
 
 [ext_resource type="PackedScene" uid="uid://dk6yitdwmd2wt" path="res://camera_2d/movement/camera_2d_movement_component.tscn" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dt0lfgcu7w7lg" path="res://icon.svg" id="2_0xm2m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7vkv1hk0ys5o" path="res://camera_2d/movement/camera_2d_keyboard_controller_component.tscn" id="3_lquwl"]
 [ext_resource type="Script" uid="uid://ld7dhjap17ow" path="res://camera_2d/movement/camera_2d_keyboard_controller_component.gd" id="4_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dbncr2dg183bl" path="res://camera_2d/movement/camera_2d_follow_component.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b7q7t621hbbpo" path="res://camera_2d/movement/camera_2d_move_2_position_component.tscn" id="6_kek77"]
 [ext_resource type="PackedScene" uid="uid://bxj0fo153qakt" path="res://camera_2d/zoom/camera_2d_zoom_component.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://cw6mef014nvwi" path="res://camera_2d/zoom/camera_2d_scroll_wheel_zoom_component.tscn" id="8_5vw27"]
 
@@ -24,12 +25,14 @@ is_enable = true
 
 [node name="Camera2DMouseDragComopnent" parent="Camera2D/Movement" node_paths=PackedStringArray("movement_component") instance=ExtResource("2_h2yge")]
 movement_component = NodePath("../Camera2DMovementComponent")
-is_enable = true
 
 [node name="Camera2DKeyboardControllerComponent" parent="Camera2D/Movement" node_paths=PackedStringArray("movement_component") instance=ExtResource("3_lquwl")]
 script = ExtResource("4_7mycd")
 movement_component = NodePath("../Camera2DMovementComponent")
 is_enable = true
+
+[node name="Camera2DMove2PositionComponent" parent="Camera2D/Movement" node_paths=PackedStringArray("movement_component") instance=ExtResource("6_kek77")]
+movement_component = NodePath("../Camera2DMovementComponent")
 
 [node name="Camera2DFollowComponent" parent="Camera2D/Movement" instance=ExtResource("6_7mycd")]
 

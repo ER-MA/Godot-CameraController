@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7q7t621hbbpo"]
+
+[ext_resource type="Script" uid="uid://dxnjrdarycpns" path="res://camera_2d/movement/camera_2d_move_2_position_component.gd" id="1_0g5p0"]
+
+[node name="Camera2DMove2PositionComponent" type="Node2D"]
+script = ExtResource("1_0g5p0")

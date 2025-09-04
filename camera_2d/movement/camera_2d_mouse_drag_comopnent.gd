@@ -32,7 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				
 				# 鼠标右键被按下时
 				if event.pressed:
-					movement_component.motion_mode = 0 # 摄像机的运动模式设置为Lerp
+					movement_component.motion_mode = 1 # 摄像机的运动模式设置为Lerp
 					movement_component.deceleration_speed = deceleration_speed # 覆盖插值移动速度
 					_mouse_start_position = get_local_mouse_position() # 记录鼠标位置
 					
