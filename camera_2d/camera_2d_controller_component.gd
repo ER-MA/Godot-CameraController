@@ -28,7 +28,7 @@ func _ready() -> void:
 		push_error("[Camera2DControllerComponent] 未分配或找到 Camera2D")
 
 func _physics_process(delta: float) -> void:
-	prints(camera.get_local_mouse_position(), get_local_mouse_position())
+	#prints(get_camera_center_mouse_world_position(), get_viewport_center_mouse_viewport_position())
 	if is_ready():
 		# 运动相关
 		if not target_position.is_equal_approx(camera.position):
@@ -82,6 +82,9 @@ func add_target_position(increase: Vector2) -> void:
 func add_target_zoom(increase: Vector2) -> void:
 	target_zoom += increase
 	
+func multiply_target_zoom(multiplier: Vector2) -> void:
+	target_zoom = target_zoom * multiplier
+	
 func get_camera_position() -> Vector2:
 	return camera.position
 	
@@ -90,6 +93,27 @@ func get_camera_zoom() -> Vector2:
 
 func get_camera_local_mouse_position() -> Vector2:
 	return camera.get_local_mouse_position() # 鼠标相对于摄像机的世界坐标
+	
+func get_viewport_center_mouse_viewport_position() -> Vector2: # 获取相对于视口中心的鼠标视口坐标（不受摄像机缩放影响，受窗口拉伸的影响）
+	return get_viewport().get_mouse_position() - Vector2(get_viewport().size) / 2.0
+	
+func get_camera_center_mouse_world_position() -> Vector2: # 获取相对于摄像机中心的鼠标世界坐标（受缩放影响）
+	return get_viewport_center_mouse_viewport_position() / camera.zoom
+	
+func get_world_center_camera_world_position() -> Vector2: # 获取相对于世界中心的摄像机中心点的世界坐标（与缩放无关）
+	return camera.get_screen_center_position()
+	
+func get_world_center_mouse_world_position() -> Vector2: # 获取相对于世界中心的鼠标世界坐标
+	return get_world_center_camera_world_position() + get_camera_center_mouse_world_position()
+	
+func get_world_center_mouse_position() -> Vector2: # 获取相对于世界中心的鼠标坐标（也就是鼠标指的向物体的世界坐标）
+	# 返回鼠标在游戏世界坐标系中的绝对坐标
+	var viewport_size := Vector2(get_viewport().size) # 将Viewport尺寸转换为Vector2类型
+	var screen_center := viewport_size / 2.0 # 计算屏幕中心点
+	var mouse_screen_pos := get_viewport().get_mouse_position() # 获取鼠标位置
+	var screen_offset := mouse_screen_pos - screen_center # 计算偏移量
+	return camera.get_screen_center_position() + screen_offset / camera.zoom # 应用缩放转换
+	
 
 func is_ready() -> bool:
 	return is_enable and camera

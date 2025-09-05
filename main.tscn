@@ -42,4 +42,7 @@ is_enable = true
 [node name="Camera2DScrollWheelZoomComponent" parent="Camera2D/Zoom" node_paths=PackedStringArray("controller_component") instance=ExtResource("8_5vw27")]
 controller_component = NodePath("../../Movement/Camera2DControllerComponent")
 is_enable = true
+step_size = Vector2(2, 2)
+position_transition_mode = 0
 zoom_mode = 1
+max_zoom = Vector2(32, 32)
