@@ -97,7 +97,7 @@ func get_camera_local_mouse_position() -> Vector2:
 func get_viewport_center_mouse_viewport_position() -> Vector2: # 获取相对于视口中心的鼠标视口坐标（不受摄像机缩放影响，受窗口拉伸的影响）
 	return get_viewport().get_mouse_position() - Vector2(get_viewport().size) / 2.0
 	
-func get_camera_center_mouse_world_position() -> Vector2: # 获取相对于摄像机中心的鼠标世界坐标（受缩放影响）
+func get_camera_center_mouse_world_position() -> Vector2: # 获取相对于摄像机中心的鼠标世界坐标（受缩放影响；使用该函数可能导致插值过程对计算产生影响）
 	return get_viewport_center_mouse_viewport_position() / camera.zoom
 	
 func get_world_center_camera_world_position() -> Vector2: # 获取相对于世界中心的摄像机中心点的世界坐标（与缩放无关）

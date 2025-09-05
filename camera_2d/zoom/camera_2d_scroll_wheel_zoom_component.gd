@@ -44,52 +44,34 @@ func _unhandled_input(event: InputEvent) -> void:
 					
 				elif zoom_mode == 1:
 					_cover_position_parameter()
-					# 应用缩放
+					# 缩放
 					_current_target_zoom = controller_component.target_zoom
 					_new_target_zoom = (_current_target_zoom * step_size).clamp(min_zoom, max_zoom)
 					controller_component.multiply_target_zoom(_new_target_zoom / _current_target_zoom)
-					prints("target_zoom:", controller_component.target_zoom, _current_target_zoom / _new_target_zoom)
-					#print(controller_component.get_camera_center_mouse_world_position())
 					
-					#c_w * c_z = n_w * n_z
-					#n_w = c_w * c_z / n_z
-					
-					var current_camera_center_mouse_world_position: Vector2 = controller_component.get_camera_center_mouse_world_position()
-					var new_camera_center_mouse_world_position = current_camera_center_mouse_world_position * _current_target_zoom / _new_target_zoom
-					var delta = current_camera_center_mouse_world_position - new_camera_center_mouse_world_position
-					prints(current_camera_center_mouse_world_position.normalized(), new_camera_center_mouse_world_position.normalized())
-					controller_component.add_target_position(delta)
-					
-					#var viewport_center_mouse_viewport_position: Vector2 = controller_component.get_viewport_center_mouse_viewport_position()
-					#print(viewport_center_mouse_viewport_position)
-					
-					#var world_center_mouse_world_position: Vector2 = controller_component.get_world_center_mouse_world_position()
-					#prints("m_world_pos:", world_center_mouse_world_position)
-					#var camera_center_mouse_world_position: Vector2 = controller_component.get_camera_center_mouse_world_position()
-					#prints("m_camer_pos:", camera_center_mouse_world_position)
-					#controller_component.add_target_position(world_center_mouse_world_position - (camera_center_mouse_world_position * (_current_target_zoom / _new_target_zoom)))
+					# 基于鼠标位置的缩放中心补偿
+					var current_camera_center_mouse_world_position: Vector2 = controller_component.get_viewport_center_mouse_viewport_position() / _current_target_zoom
+					var camera_world_position_compensation: Vector2 = current_camera_center_mouse_world_position * ((_new_target_zoom - _current_target_zoom) / _new_target_zoom)
+					controller_component.add_target_position(camera_world_position_compensation)
 					
 			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 				# 下滑滚轮缩小
 				_cover_zoom_parameter()
 				
 				if zoom_mode == 0:
-					controller_component.add_target_zoom(step_size * -1)
+					controller_component.add_target_zoom(step_size)
 					
 				elif zoom_mode == 1:
 					_cover_position_parameter()
-					# 应用缩放
+					# 缩放
 					_current_target_zoom = controller_component.target_zoom
-					_new_target_zoom = _current_target_zoom - step_size
-					_new_target_zoom = _new_target_zoom.clamp(min_zoom, max_zoom)
-					controller_component.add_target_zoom(_new_target_zoom - _current_target_zoom)
+					_new_target_zoom = (_current_target_zoom / step_size).clamp(min_zoom, max_zoom)
+					controller_component.multiply_target_zoom(_new_target_zoom / _current_target_zoom)
+					
 					# 基于鼠标位置的缩放中心补偿
-					var viewport = get_viewport().get_visible_rect().size
-					var mouse_pos = event.position - viewport / 2
-					var offset_before = mouse_pos / _current_target_zoom
-					var offset_after = mouse_pos / _new_target_zoom
-					var delta_offset = offset_after - offset_before
-					controller_component.add_target_position(delta_offset * _new_target_zoom * -1)
+					var current_camera_center_mouse_world_position: Vector2 = controller_component.get_viewport_center_mouse_viewport_position() / _current_target_zoom
+					var camera_world_position_compensation: Vector2 = current_camera_center_mouse_world_position * ((_new_target_zoom - _current_target_zoom) / _new_target_zoom)
+					controller_component.add_target_position(camera_world_position_compensation)
 
 
 func _cover_zoom_parameter() -> void:
