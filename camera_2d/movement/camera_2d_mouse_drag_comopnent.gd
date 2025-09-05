@@ -4,10 +4,10 @@ class_name Camera2DMouseDragComponent
 @export var controller_component: Camera2DControllerComponent
 @export var is_enable: bool = false
 @export_group("拖拽参数")
-@export_enum("Add", "Set") var control_mode: int = 0 ## 本组件修改摄像机坐标的模式：[br]0: 在摄像机原有坐标基础上 add 偏移量（可能产生累积误差？目前可以忽略不计）[br]1: 直接修改摄像机的坐标（覆盖其他组件对坐标的修改）[br]建议使用模式 0
 @export_enum("None", "Lerp", "Smooth") var transition_mode: int = 1 ## 摄像机的运动过度模式：[br]None: 直接移动至目标位置[br]Lerp: 使用 lerp 函数对坐标进行插值[br]Smooth: 使用 move_toward 函数对坐标进行平滑插值
 @export_range(1.0, 10.0, 0.1) var deceleration_speed: float = 5.0 ## 摄像机的插值移动速度（会覆盖 MovenentComponent 中的 position_deceleration_speed）
 @export_range(1.0, 1000.0, 1.0, "suffix:px/s") var smoothing_speed: float = 500.0 ## 摄像机的平滑移动速度（会覆盖 MovenentComponent 中的 position_smoothing_speed）
+@export_enum("Add", "Set") var control_mode: int = 0 ## 本组件修改摄像机坐标的模式：[br]0: 在摄像机原有坐标基础上 add 偏移量（可能产生累积误差？目前可以忽略不计）[br]1: 直接修改摄像机的坐标（覆盖其他组件对坐标的修改）[br]建议使用模式 0
 var _camera_start_position: Vector2 # 开始拖动时摄像机的位置
 var _camera_zoom: Vector2 # 当前摄像机的缩放倍率
 var _mouse_start_viewport_position: Vector2 # 开始拖动时鼠标的位置
