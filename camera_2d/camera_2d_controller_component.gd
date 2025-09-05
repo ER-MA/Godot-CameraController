@@ -28,6 +28,7 @@ func _ready() -> void:
 		push_error("[Camera2DControllerComponent] 未分配或找到 Camera2D")
 
 func _physics_process(delta: float) -> void:
+	prints(camera.get_local_mouse_position(), get_local_mouse_position())
 	if is_ready():
 		# 运动相关
 		if not target_position.is_equal_approx(camera.position):
@@ -86,6 +87,9 @@ func get_camera_position() -> Vector2:
 	
 func get_camera_zoom() -> Vector2:
 	return camera.zoom
+
+func get_camera_local_mouse_position() -> Vector2:
+	return camera.get_local_mouse_position() # 鼠标相对于摄像机的世界坐标
 
 func is_ready() -> bool:
 	return is_enable and camera
