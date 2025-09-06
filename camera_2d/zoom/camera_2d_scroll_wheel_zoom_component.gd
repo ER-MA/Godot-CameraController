@@ -15,11 +15,8 @@ class_name Camera2DScrollWheelZoomComponent
 @export_enum("Screen", "Mouse") var zoom_mode: int = 0 ## 摄像机的缩放模式：[br]Screen: 以屏幕为中心进行缩放[br]Mouse: 以鼠标为中心进行缩放
 @export var min_zoom: Vector2 = Vector2(0.7, 0.7) ## 摄像机的最小缩放倍率（会覆盖 ControllerComponent 中的 min_zoom）
 @export var max_zoom: Vector2 = Vector2(3.0, 3.0) ## 摄像机的最大缩放倍率（会覆盖 ControllerComponent 中的 max_zoom）
-var _mouse_world_before: Vector2
-var _mouse_world_after: Vector2
 var _current_target_zoom: Vector2
 var _new_target_zoom: Vector2
-var _zoom_ratio: Vector2
 
 
 func _ready() -> void:
