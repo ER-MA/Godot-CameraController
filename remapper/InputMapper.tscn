@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlk0a7rpow1wo"]
+
+[ext_resource type="Script" uid="uid://bje2it5f17xvw" path="res://remapper/input_mapper.gd" id="1_e1wqx"]
+[ext_resource type="Script" uid="uid://cqd170bxnytr0" path="res://remapper/remapper.gd" id="1_tl1yr"]
+
+[node name="InputMapper" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e1wqx")
+
+[node name="CameraLeft" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -95.0
+offset_right = 100.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+action = "camera_left"
+
+[node name="CameraRight" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -45.0
+offset_right = 100.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+action = "camera_right"
+
+[node name="CameraUp" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 5.0
+offset_right = 100.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+action = "camera_up"
+
+[node name="CameraDown" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 55.0
+offset_right = 100.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+action = "camera_down"
