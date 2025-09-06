@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=3 uid="uid://ce7po5ifr7l5d"]
+
+[ext_resource type="Texture2D" uid="uid://dt0lfgcu7w7lg" path="res://icon.svg" id="1_fm1ju"]
+[ext_resource type="PackedScene" uid="uid://dk6yitdwmd2wt" path="res://camera_2d/camera_2d_controller_component.tscn" id="2_t4ctg"]
+[ext_resource type="PackedScene" uid="uid://y4rpylwhx1jh" path="res://camera_2d/movement/camera_2d_mouse_drag_comopnent.tscn" id="3_fp54i"]
+[ext_resource type="PackedScene" uid="uid://7vkv1hk0ys5o" path="res://camera_2d/movement/camera_2d_keyboard_controller_component.tscn" id="4_ytpco"]
+[ext_resource type="Script" uid="uid://ld7dhjap17ow" path="res://camera_2d/movement/camera_2d_keyboard_controller_component.gd" id="5_fn4if"]
+[ext_resource type="PackedScene" uid="uid://b7q7t621hbbpo" path="res://camera_2d/movement/camera_2d_move_2_position_component.tscn" id="6_1axul"]
+[ext_resource type="PackedScene" uid="uid://dbncr2dg183bl" path="res://camera_2d/movement/camera_2d_follow_component.tscn" id="7_oemlx"]
+[ext_resource type="PackedScene" uid="uid://cw6mef014nvwi" path="res://camera_2d/zoom/camera_2d_scroll_wheel_zoom_component.tscn" id="8_vwekp"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_fm1ju")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Movement" type="Node" parent="Camera2D"]
+
+[node name="Camera2DControllerComponent" parent="Camera2D/Movement" node_paths=PackedStringArray("camera") instance=ExtResource("2_t4ctg")]
+camera = NodePath("../..")
+is_enable = true
+
+[node name="Camera2DMouseDragComopnent" parent="Camera2D/Movement" node_paths=PackedStringArray("controller_component") instance=ExtResource("3_fp54i")]
+controller_component = NodePath("../Camera2DControllerComponent")
+is_enable = true
+
+[node name="Camera2DKeyboardControllerComponent" parent="Camera2D/Movement" node_paths=PackedStringArray("controller_component") instance=ExtResource("4_ytpco")]
+script = ExtResource("5_fn4if")
+controller_component = NodePath("../Camera2DControllerComponent")
+is_enable = true
+
+[node name="Camera2DMove2PositionComponent" parent="Camera2D/Movement" node_paths=PackedStringArray("controller_component") instance=ExtResource("6_1axul")]
+controller_component = NodePath("../Camera2DControllerComponent")
+is_enable = true
+
+[node name="Camera2DFollowComponent" parent="Camera2D/Movement" instance=ExtResource("7_oemlx")]
+
+[node name="Zoom" type="Node" parent="Camera2D"]
+
+[node name="Camera2DScrollWheelZoomComponent" parent="Camera2D/Zoom" node_paths=PackedStringArray("controller_component") instance=ExtResource("8_vwekp")]
+controller_component = NodePath("../../Movement/Camera2DControllerComponent")
+is_enable = true
+step_size = Vector2(1.1, 1.1)
+zoom_mode = 1
