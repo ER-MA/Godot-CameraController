@@ -28,73 +28,145 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_e1wqx")
 
-[node name="CameraLeft" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+[node name="CameraLeft0" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -205.0
 offset_top = -95.0
-offset_right = 100.0
+offset_right = -5.0
 offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tl1yr")
 input_mapper = NodePath("..")
-action = "camera_left"
+rebind_action = "camera_left"
 
-[node name="CameraRight" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+[node name="CameraRight0" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -205.0
 offset_top = -45.0
-offset_right = 100.0
+offset_right = -5.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tl1yr")
 input_mapper = NodePath("..")
-action = "camera_right"
+rebind_action = "camera_right"
 
-[node name="CameraUp" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+[node name="CameraUp0" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -205.0
 offset_top = 5.0
-offset_right = 100.0
+offset_right = -5.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tl1yr")
 input_mapper = NodePath("..")
-action = "camera_up"
+rebind_action = "camera_up"
 
-[node name="CameraDown" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+[node name="CameraDown0" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
+offset_left = -205.0
 offset_top = 55.0
-offset_right = 100.0
+offset_right = -5.0
 offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tl1yr")
 input_mapper = NodePath("..")
-action = "camera_down"
+rebind_action = "camera_down"
+
+[node name="CameraLeft1" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -95.0
+offset_right = 205.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+rebind_action = "camera_left"
+event_num = 1
+
+[node name="CameraRight1" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -45.0
+offset_right = 205.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+rebind_action = "camera_right"
+event_num = 1
+
+[node name="CameraUp1" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 205.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+rebind_action = "camera_up"
+event_num = 1
+
+[node name="CameraDown1" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = 55.0
+offset_right = 205.0
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tl1yr")
+input_mapper = NodePath("..")
+rebind_action = "camera_down"
+event_num = 1
 
 [node name="InputTest" type="Node2D" parent="."]
 script = SubResource("GDScript_e1wqx")
