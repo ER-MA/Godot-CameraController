@@ -3,7 +3,7 @@ class_name Remapper
 
 @export var input_mapper: InputMapper
 @export var rebind_action: String ## 该按钮要重绑定的动作
-@export var event_num: int ## 该按钮要冲绑定的动作的第 num 个事件
+@export var event_num: int ## 该按钮要绑定的动作的第 num 个事件
 @export var cancel_action: String = "ui_cancel" ## 用于取消绑定的动作
 @export_group("显示内容")
 #下述 display_mode 功能还需要修改文本更新逻辑，暂时懒得做了。
