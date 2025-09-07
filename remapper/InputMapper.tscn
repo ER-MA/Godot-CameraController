@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlk0a7rpow1wo"]
+[gd_scene load_steps=4 format=3 uid="uid://dlk0a7rpow1wo"]
 
 [ext_resource type="Script" uid="uid://bje2it5f17xvw" path="res://remapper/input_mapper.gd" id="1_e1wqx"]
 [ext_resource type="Script" uid="uid://cqd170bxnytr0" path="res://remapper/remapper.gd" id="1_tl1yr"]
+
+[sub_resource type="GDScript" id="GDScript_e1wqx"]
+script/source = "extends Node2D
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_pressed():
+		if event.is_action(\"camera_left\") and event.is_pressed():
+			print(\"[camera_left]\")
+		if event.is_action(\"camera_right\") and event.is_pressed():
+			print(\"[camera_right]\")
+		if event.is_action(\"camera_up\") and event.is_pressed():
+			print(\"[camera_up]\")
+		if event.is_action(\"camera_down\") and event.is_pressed():
+			print(\"[camera_down]\")
+"
 
 [node name="InputMapper" type="Control"]
 layout_mode = 3
@@ -79,3 +95,6 @@ grow_vertical = 2
 script = ExtResource("1_tl1yr")
 input_mapper = NodePath("..")
 action = "camera_down"
+
+[node name="InputTest" type="Node2D" parent="."]
+script = SubResource("GDScript_e1wqx")
