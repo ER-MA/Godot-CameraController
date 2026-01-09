@@ -43,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tl1yr")
 input_mapper = NodePath("..")
-rebind_action = "camera_left1"
+rebind_action = "camera_left"
 
 [node name="CameraRight0" type="Button" parent="." node_paths=PackedStringArray("input_mapper")]
 layout_mode = 1

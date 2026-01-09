@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="test_study_2"
-config/tags=PackedStringArray("study", "test")
+config/name="camera_controller"
+config/tags=PackedStringArray("component")
 run/main_scene="uid://ce7po5ifr7l5d"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="gd_test_study_2"
